@@ -47,7 +47,7 @@ test('return undefined with no argument', async t => {
 
 test('return true for bin exists', t => {
 	truthy.$async(t, ['node', 'npm']);
-	truthy.$sync(t, ['node', 'npm', 'yarn']);
+	truthy.$sync(t, ['node', 'npm']);
 });
 
 test('return false for bin not exists', t => {
