@@ -1,0 +1,36 @@
+{
+  "name": "bin-exists",
+  "version": "0.0.0",
+  "description": "Check if the binary exists on system",
+  "license": "MIT",
+  "repository": "iguntur/bin-exists",
+  "author": {
+    "name": "Guntur Poetra",
+    "email": "poetra.guntur@gmail.com",
+    "url": "http://guntur.starmediateknik.com"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "check",
+    "bin",
+    "exists",
+    "utility",
+    "bin-utility"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "xo": "^0.16.0"
+  },
+  "xo": {
+    "esnext": true
+  }
+}
