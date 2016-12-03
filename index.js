@@ -2,7 +2,15 @@
 const fs = require('fs');
 const path = require('path');
 
-const envPath = bn => process.env.PATH.split(path.delimiter).map(p => path.join(p, bn));
+const setPlatform = bin => {
+	if (process.platform === 'win32') {
+		return path.parse(bin).name + '.exe';
+	}
+
+	return bin;
+};
+
+const envPath = bin => process.env.PATH.split(path.delimiter).map(p => path.join(p, setPlatform(bin)));
 
 module.exports = bin => {
 	if (!bin) {
