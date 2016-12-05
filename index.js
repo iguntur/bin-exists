@@ -2,15 +2,26 @@
 const fs = require('fs');
 const path = require('path');
 
-const setPlatform = bin => {
-	if (process.platform === 'win32') {
-		return path.parse(bin).name + '.exe';
-	}
+const envPath = bin => {
+	const paths = process.env.PATH.split(path.delimiter);
+	let arr = [];
 
-	return bin;
+	paths.forEach(p => {
+		if (process.platform === 'win32') {
+			arr = arr.concat([
+				path.join(p, bin),
+				path.join(p, bin + '.exe'),
+				path.join(p, bin + '.cmd')
+			]);
+		} else {
+			arr = arr.concat([
+				path.join(p, bin)
+			]);
+		}
+	});
+
+	return arr;
 };
-
-const envPath = bin => process.env.PATH.split(path.delimiter).map(p => path.join(p, setPlatform(bin)));
 
 module.exports = bin => {
 	if (!bin) {
@@ -23,8 +34,6 @@ module.exports = bin => {
 		if (fs.existsSync(val)) {
 			ret = true;
 		}
-
-		return;
 	});
 
 	return Promise.resolve(ret);
@@ -41,8 +50,6 @@ module.exports.sync = bin => {
 		if (fs.existsSync(val)) {
 			ret = true;
 		}
-
-		return;
 	});
 
 	return ret;
