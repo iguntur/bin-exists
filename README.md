@@ -1,4 +1,4 @@
-# bin-exists [![Build Status](https://travis-ci.org/iguntur/bin-exists.svg?branch=master)](https://travis-ci.org/iguntur/bin-exists)
+# bin-exists [![Build Status](https://travis-ci.org/iguntur/bin-exists.svg?branch=master)](https://travis-ci.org/iguntur/bin-exists) [![Build Status](https://ci.appveyor.com/api/projects/status/github/iguntur/bin-exists?branch=master&svg=true)](https://ci.appveyor.com/project/iguntur/bin-exists)
 
 > Check if the binary exists on system
 
