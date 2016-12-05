@@ -6,6 +6,8 @@ const envPath = bin => {
 	const paths = process.env.PATH.split(path.delimiter);
 	let arr = [];
 
+	bin = path.parse(bin).name;
+
 	paths.forEach(p => {
 		if (process.platform === 'win32') {
 			arr = arr.concat([
