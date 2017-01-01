@@ -1,6 +1,6 @@
 {
   "name": "bin-exists",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "Check if the binary exists on system",
   "license": "MIT",
   "repository": "iguntur/bin-exists",
