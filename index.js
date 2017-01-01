@@ -1,58 +1,26 @@
 'use strict';
-const fs = require('fs');
-const path = require('path');
+const childProcess = require('child_process');
 
-const envPath = bin => {
-	const paths = process.env.PATH.split(path.delimiter);
-	let arr = [];
-
-	bin = path.parse(bin).name;
-
-	paths.forEach(p => {
-		if (process.platform === 'win32') {
-			arr = arr.concat([
-				path.join(p, bin),
-				path.join(p, bin + '.exe'),
-				path.join(p, bin + '.cmd')
-			]);
-		} else {
-			arr = arr.concat([
-				path.join(p, bin)
-			]);
-		}
-	});
-
-	return arr;
-};
-
-module.exports = bin => {
-	if (!bin) {
-		return;
+module.exports = bin => new Promise(resolve => {
+	if (process.platform === 'win32') {
+		childProcess.exec(`where ${bin}`, err => resolve(!err));
+	} else {
+		childProcess.exec(`command -v ${bin}`, err => resolve(!err));
 	}
-
-	let ret = false;
-
-	envPath(bin).forEach(val => {
-		if (fs.existsSync(val)) {
-			ret = true;
-		}
-	});
-
-	return Promise.resolve(ret);
-};
+});
 
 module.exports.sync = bin => {
-	if (!bin) {
-		return;
-	}
+	try {
+		const opts = {stdio: 'ignore'};
 
-	let ret = false;
-
-	envPath(bin).forEach(val => {
-		if (fs.existsSync(val)) {
-			ret = true;
+		if (process.platform === 'win32') {
+			childProcess.execSync(`where ${bin}`, opts);
+		} else {
+			childProcess.execSync(`command -v ${bin}`, opts);
 		}
-	});
 
-	return ret;
+		return true;
+	} catch (err) {
+		return false;
+	}
 };
