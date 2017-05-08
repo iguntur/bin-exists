@@ -25,7 +25,6 @@
     "utility",
     "bin-utility"
   ],
-  "dependencies": {},
   "devDependencies": {
     "ava": "^0.16.0",
     "xo": "^0.16.0"
