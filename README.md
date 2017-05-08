@@ -19,13 +19,13 @@ const binExists = require('bin-exists');
 // async
 binExists('node').then(val => {
     console.log(val);
+    //=> true
 });
-//=> true
 
 binExists('foo').then(val => {
     console.log(val);
+    //=> false
 });
-//=> false
 
 // sync
 console.log(binExists.sync('node'));
